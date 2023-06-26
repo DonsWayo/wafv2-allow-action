@@ -15,6 +15,7 @@ export async function run(): Promise<void> {
     const publicIp = await getPublicIp(maxRetries)
 
     const NewAddress = `${publicIp}/32`
+    core.setOutput('NewAddress', NewAddress)
 
     if (action === 'add') {
       core.info(`adding: ${NewAddress}`)
@@ -29,7 +30,7 @@ export async function run(): Promise<void> {
     }
 
     core.setOutput('address', NewAddress)
-  } catch (error) {
+  } catch (error: any) {
     core.setFailed(error.message)
   }
 }
