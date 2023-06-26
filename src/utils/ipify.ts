@@ -19,6 +19,7 @@ export async function getPublicIp(
   const ipv4 = await http.getJson<IPResponse>(
     'https://api.ipify.org?format=json'
   )
+  console.log('ipv4', ipv4)
   const ip = ipv4?.result?.ip
   if (!ip) throw new Error(`Can't Determine public IP`)
 
